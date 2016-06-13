@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context="com.pxpd.MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:background="@mipmap/title_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="平行盘点综合管理系统"
+            style="@style/TextStyle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textSize="22dp"
+            android:textStyle="bold"
+
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/btn_return_style"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:id="@+id/btn_return"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/btn_setting_select"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:id="@+id/btn_save"
+            />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_below="@+id/r1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/pandianinfo_kuang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="20dp"
+                android:id="@+id/m1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/pd"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/m1"
+                android:textSize="28dp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="15dp"
+                android:text="综合盘点"/>
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+           android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/pandianinfo_kuang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="20dp"
+                android:id="@+id/m2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/find"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/m2"
+                android:textSize="28dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/white"
+                android:text="定向查找"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/pandianinfo_kuang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="20dp"
+                android:id="@+id/m3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/docup"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/m3"
+                android:textSize="28dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/white"
+                android:text="档案上架"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/pandianinfo_kuang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="20dp"
+                android:id="@+id/m4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/tb"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/m4"
+                android:textSize="28dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/white"
+                android:text="数据同步"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

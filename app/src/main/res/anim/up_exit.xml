@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/accelerate_interpolator"
+    android:fillAfter="true">
+    <!--
+        起始x轴坐标
+            止x轴坐标
+            始y轴坐标
+            止y轴坐标
+            轴的坐标
+            轴的坐标
+      -->
+    <translate
+        android:toYDelta="100%p"
+        android:duration="600"
+        />
+</set>
