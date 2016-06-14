@@ -1,175 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background"
+    android:orientation="vertical"
     tools:context="com.pxpd.MainActivity">
 
 
-    <RelativeLayout
-        android:id="@+id/r1"
-        android:background="@mipmap/title_background"
+    <include layout="@layout/headlayout"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="连接状态：内网"
+
+        android:textColor="@color/gray"
+        android:textSize="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="平行盘点综合管理系统"
-            style="@style/TextStyle"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textSize="22dp"
-            android:textStyle="bold"
-
-            />
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/btn_return_style"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:clickable="true"
-            android:id="@+id/btn_return"
-            />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/btn_setting_select"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            android:id="@+id/btn_save"
-            />
-
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_below="@+id/r1"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
         <RelativeLayout
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
             android:layout_marginTop="20dp"
-            android:background="@mipmap/pandianinfo_kuang"
-            android:layout_width="match_parent"
+            android:clickable="true"
+            android:background="@drawable/btn_botton_selector"
+            android:layout_width="50dp"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/m1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="@mipmap/pd"/>
 
             <TextView
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/m1"
-                android:textSize="28dp"
+                android:layout_below="@+id/m1"
+                android:layout_centerHorizontal="true"
+
+                android:textSize="14dp"
                 android:textColor="@color/white"
-                android:layout_marginLeft="15dp"
+
                 android:text="综合盘点"/>
 
         </RelativeLayout>
 
-
-
-
         <RelativeLayout
-           android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-
-            android:layout_marginTop="10dp"
-            android:background="@mipmap/pandianinfo_kuang"
-            android:layout_width="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:background="@drawable/btn_botton_selector"
+            android:layout_width="50dp"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/m2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="@mipmap/find"/>
 
             <TextView
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/m2"
-                android:textSize="28dp"
-                android:layout_marginLeft="15dp"
+                android:layout_below="@+id/m2"
+                android:layout_centerHorizontal="true"
+                android:textSize="14dp"
                 android:textColor="@color/white"
                 android:text="定向查找"/>
 
         </RelativeLayout>
-
         <RelativeLayout
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-
-            android:layout_marginTop="10dp"
-            android:background="@mipmap/pandianinfo_kuang"
-            android:layout_width="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:background="@drawable/btn_botton_selector"
+            android:layout_width="50dp"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/m3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@mipmap/docup"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/m3"
-                android:textSize="28dp"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/white"
-                android:text="档案上架"/>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-
-            android:layout_marginTop="10dp"
-            android:background="@mipmap/pandianinfo_kuang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_margin="20dp"
-                android:id="@+id/m4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="@mipmap/tb"/>
 
             <TextView
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/m4"
-                android:textSize="28dp"
-                android:layout_marginLeft="15dp"
+                android:layout_below="@+id/m3"
+                android:layout_centerHorizontal="true"
+
+                android:textSize="14dp"
                 android:textColor="@color/white"
+
                 android:text="数据同步"/>
 
         </RelativeLayout>
 
+
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:background="@drawable/btn_botton_selector"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/m4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@mipmap/docup"/>
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/m4"
+                android:layout_centerHorizontal="true"
+
+                android:textSize="14dp"
+                android:textColor="@color/white"
+
+                android:text="档案上架"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:background="@drawable/btn_botton_selector"
+            android:layout_width="20dp"
+            android:id="@+id/btnseting"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/m5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@mipmap/setting"/>
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/m5"
+                android:layout_centerHorizontal="true"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:text="设置"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_botton_selector"
+            android:layout_width="20dp"
+            android:clickable="true"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/m6"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@mipmap/mjcontrol"/>
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/m6"
+                android:layout_centerHorizontal="true"
+
+                android:textSize="14dp"
+                android:textColor="@color/white"
+
+                android:text="密集架控制"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

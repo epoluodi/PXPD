@@ -7,45 +7,7 @@
     android:orientation="vertical"
     tools:context="com.pxpd.Setting">
 
-    <RelativeLayout
-        android:background="@mipmap/title_background"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置"
-            style="@style/TextStyle"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:textSize="22dp"
-            android:textStyle="bold"
-
-            />
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/btn_return_style"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:clickable="true"
-            android:id="@+id/btn_return"
-            />
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/btn_save_select"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:clickable="true"
-            android:id="@+id/btn_save"
-            />
-
-
-    </RelativeLayout>
+   <include layout="@layout/headlayout"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
