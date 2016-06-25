@@ -16,7 +16,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Setting" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".DataAsync" />
+        <activity android:name=".online_pd" />
+        <activity android:name=".OfflineFileActivity" />
+        <activity android:name=".FindActivity" />
+        <activity android:name=".UpJiaAvtivity"></activity>
     </application>
 
 </manifest>

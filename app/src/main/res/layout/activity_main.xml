@@ -37,6 +37,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/olpd"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
@@ -69,6 +70,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/btnfind"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
@@ -103,6 +105,7 @@
             android:layout_weight="1"
             android:layout_marginTop="20dp"
             android:clickable="true"
+            android:id="@+id/btndataasync"
             android:background="@drawable/btn_botton_selector"
             android:layout_width="50dp"
             android:layout_height="wrap_content">
@@ -141,6 +144,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/btnup"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 public class Login extends Activity {
 
     private Button btnlogin;
-    private ImageView btnsetting;
+    private ImageView btnsetting,btnoffline;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,10 +19,28 @@ public class Login extends Activity {
         btnlogin.setOnClickListener(onClickListenerlogin);
         btnsetting = (ImageView)findViewById(R.id.btnsetting);
         btnsetting.setOnClickListener(onClickListenersetting);
+        btnoffline = (ImageView)findViewById(R.id.btnoffline);
+        btnoffline.setOnClickListener(onClickListeneroffline);
+
 
     }
 
+    /**
+     * 点击离线
+     */
+    View.OnClickListener onClickListeneroffline = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(Login.this,OfflineFileActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.alpha,R.anim.alpha_exit);
+        }
+    };
 
+
+    /**
+     * 点击登录
+     */
     View.OnClickListener onClickListenerlogin = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -32,6 +50,9 @@ public class Login extends Activity {
         }
     };
 
+    /**
+     * 点击设置
+     */
     View.OnClickListener onClickListenersetting = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

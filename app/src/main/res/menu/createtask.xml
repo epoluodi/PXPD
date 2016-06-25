@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.apollo.elevator_check.createtask" >
+    <item android:id="@+id/barcode"
+        android:title="条码扫描"
+        android:orderInCategory="100"
+         />
+    <item android:id="@+id/rfid"
+        android:title="RFID扫描"
+        android:orderInCategory="100"
+
+        />
+
+</menu>

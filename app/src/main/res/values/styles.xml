@@ -13,4 +13,16 @@
         <item name="android:singleLine">true</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
     </style>
+
+    <style name="List" parent="android:Widget.ListView">
+        <item name="android:scrollbars">none</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:cacheColorHint">@color/transparent</item>
+        <item name="android:divider">@color/darkgrey</item>
+        <item name="android:dividerHeight">1px</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:choiceMode">singleChoice</item>
+    </style>
+
+
 </resources>

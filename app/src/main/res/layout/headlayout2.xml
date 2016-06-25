@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:id="@+id/r1"
+    android:background="@color/blackTransparent4"
+    android:layout_width="match_parent"
+
+    android:layout_height="60dp">
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/btn_return_style"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:clickable="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/btn_return"
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="综合盘点"
+            style="@style/TextStyle"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:textColor="@color/whitesmoke"
+
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/gray"
+            android:layout_marginTop="2dp"
+            />
+        <TextView
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="城南库房信息库"
+            style="@style/TextStyle"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/btn_scan_style"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/btn_scan"
+        />
+
+
+</RelativeLayout>
