@@ -65,7 +65,7 @@
             android:background="@mipmap/login_user"
             android:paddingLeft="30dp"
             android:singleLine="true"
-            android:text="admin"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="16dp" />
 
@@ -80,7 +80,7 @@
             android:paddingLeft="30dp"
             android:password="true"
             android:singleLine="true"
-            android:text="admin"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="16dp" />
 
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:alpha="0.8"
-
+                android:id="@+id/inside"
                 android:text="内网"
                 android:textColor="@color/white" />
 
@@ -107,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:alpha="0.8"
+                android:id="@+id/outside"
                 android:text="外网"
                 android:textColor="@color/white" />
         </RadioGroup>

@@ -30,4 +30,17 @@
         android:id="@+id/btn_return"
         />
 
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/btn_return_style"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:id="@+id/btn_right"
+        />
+
+
 </RelativeLayout>

@@ -24,5 +24,8 @@
         <item name="android:choiceMode">singleChoice</item>
     </style>
 
-
+    <style name="Animationpopwindows">
+        <item name="android:windowEnterAnimation">@anim/anim_optionmenu</item>
+        <item name="android:windowExitAnimation">@anim/anim_optionmenu_exit</item>
+    </style>
 </resources>

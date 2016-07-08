@@ -1,8 +1,11 @@
 package com.pxpd;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -79,8 +82,8 @@ public class MainActivity extends Activity {
     View.OnClickListener onClickListenerreturn = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            finish();
-            overridePendingTransition(R.anim.alpha,R.anim.alpha_exit);
+
+            onKeyUp(4,null);
         }
     };
 
@@ -109,6 +112,35 @@ public class MainActivity extends Activity {
         }
     };
 
+
+    /**
+     *  返回登录界面
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == 4) {
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("提示").setMessage("返回到登录界面吗！");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    finish();
+                    overridePendingTransition(R.anim.alpha,R.anim.alpha_exit);
+                    return;
+                }
+            });
+            builder.setNegativeButton("取消",null);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            return false;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
 
 
 }
