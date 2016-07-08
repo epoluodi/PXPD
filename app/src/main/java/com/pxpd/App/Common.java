@@ -5,6 +5,8 @@ import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.InputStream;
 
 /**
@@ -13,40 +15,33 @@ import java.io.InputStream;
 public class Common {
 
 
-    public static String getjsonForXML(String xml)
-    {
-        InputStream inputStream=
+    public static String getjsonForXML(String xml) {
+
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(xml.getBytes());
         XmlPullParser parser = Xml.newPullParser();
-        parser.setInput(,"UTF-8");
-        }
+        String inner;
         try {
+            parser.setInput(inputStream, "UTF-8");
             // 直到文档的结尾处
-            while (xrp.getEventType() != XmlResourceParser.END_DOCUMENT) {
+            while (parser.getEventType() != XmlResourceParser.END_DOCUMENT) {
                 // 如果遇到了开始标签
-                if (xrp.getEventType() == XmlResourceParser.START_TAG) {
-                    String tagName = xrp.getName();// 获取标签的名字
-                    if (tagName.equals("item")) {
-                        Map<String, String> map = new HashMap<String, String>();
-                        String id = xrp.getAttributeValue(null, "id");// 通过属性名来获取属性值
-                        map.put("id", id);
-                        String url = xrp.getAttributeValue(1);// 通过属性索引来获取属性值
-                        map.put("url", url);
-                        map.put("name", xrp.nextText());
-                        list.add(map);
+                if (parser.getEventType() == XmlResourceParser.START_TAG) {
+                    String tagName = parser.getName();// 获取标签的名字
+                    if (tagName.equals("string")) {
+                        inner = parser.nextText();
+
+                        return inner;
                     }
                 }
-                xrp.next();// 获取解析下一个事件
+                parser.next();// 获取解析下一个事件
             }
-        } catch (XmlPullParserException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
 
-        return xml.substring(35,xml.length()-9);
+        return "";
     }
-\
+
 }

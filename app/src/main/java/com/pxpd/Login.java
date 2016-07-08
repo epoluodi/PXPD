@@ -3,6 +3,7 @@ package com.pxpd;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -97,11 +98,13 @@ public class Login extends Activity {
 
 
             if(inside.isChecked()) {
+                mode=0;
                 Config.Mode = 0;
                 Config.ServerIP = Config.getKeyShareVarForString(Login.this,"in_ip");
                 Config.ServerPort = Config.getKeyShareVarForString(Login.this,"in_port");
             }
             if(outside.isChecked()) {
+                mode=1;
                 Config.Mode = 1;
                 Config.ServerIP = Config.getKeyShareVarForString(Login.this,"out_ip");
                 Config.ServerPort = Config.getKeyShareVarForString(Login.this,"out_port");
@@ -134,7 +137,9 @@ public class Login extends Activity {
             if (msg.what==1)
             {
                 Config.RunMode=0;
-
+                Config.setKeyShareVar(Login.this,"mode",mode);
+                Config.setKeyShareVar(Login.this,"username",username);
+                Config.setKeyShareVar(Login.this,"userpwd",userpwd);
                 Intent intent = new Intent(Login.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.alpha, R.anim.alpha_exit);
