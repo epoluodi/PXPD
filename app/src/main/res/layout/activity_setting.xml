@@ -49,6 +49,7 @@
             android:textColor="@color/white"
             android:inputType="textUri"
             android:textAlignment="viewEnd"
+            android:textSize="14dp"
            />
 
     </RelativeLayout>
@@ -126,6 +127,7 @@
             android:inputType="textUri"
             android:textColor="@color/white"
             android:textAlignment="viewEnd"
+            android:textSize="14dp"
 
             />
 
