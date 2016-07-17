@@ -80,7 +80,7 @@ public final class YYHttpClient {
 		ClientConnectionManager connectionMgr = new ThreadSafeClientConnManager(
 				params, schReg);
 		m_httpClient = new DefaultHttpClient(connectionMgr, params);
-		pairList =new ArrayList<>();
+		pairList =new ArrayList<NameValuePair>();
 	}
 		
 	public boolean openRequest(String url, int nReqMethod) {

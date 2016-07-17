@@ -2,11 +2,18 @@ package com.pxpd.App;
 
 import android.app.Application;
 
+import java.io.FileDescriptor;
+
 /**
  * APP启动
  * Created by Stereo on 16/7/8.
  */
 public class App extends Application {
+
+
+
+
+
 
     @Override
     public void onCreate() {
