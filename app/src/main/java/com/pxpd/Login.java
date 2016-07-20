@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.pxpd.App.Common;
 import com.pxpd.App.Config;
 import com.pxpd.App.CustomPopWindowPlugin;
+import com.pxpd.App.FileDownload;
 import com.pxpd.http.YYHttpClient;
 
 import org.json.JSONObject;
@@ -183,9 +184,51 @@ public class Login extends Activity {
             result = Common.getjsonForXML(result);
             Log.i("json返回:",result);
 
+
             JSONObject jsonObject=new JSONObject(result);
-            if (jsonObject.getString("success").equals("true"))
-                handler.sendEmptyMessage(1);
+            if (jsonObject.getString("success").equals("true")) {
+                JSONObject data= jsonObject.getJSONObject("data");
+                Config.ClerkID=data.getString("ClerkID");
+                Config.ClerkStationID= data.getString("ClerkStationID");
+
+                yyHttpClient.closeRequest();
+                yyHttpClient=new YYHttpClient();
+                yyHttpClient.openRequest(Config.getSrvUrl("GetPositionData"), YYHttpClient.REQ_METHOD_POST);
+                yyHttpClient.setPostValuesForKey("clerkStationID,", Config.ClerkStationID);
+                yyHttpClient.setPostValuesForKey("clerkID)", Config.ClerkID);
+                yyHttpClient.setEntity(yyHttpClient.getPostData());
+                r = yyHttpClient.sendRequest();
+                if (!r) {
+                    handler.sendEmptyMessage(0);
+                    yyHttpClient.closeRequest();
+                    return;
+                }
+                buffer = yyHttpClient.getRespBodyData();
+                if (buffer == null) {
+                    handler.sendEmptyMessage(0);
+                    yyHttpClient.closeRequest();
+                    return;
+                }
+
+                result = new String(buffer, "utf-8");
+                result = Common.getjsonForXML(result);
+                Log.i("json返回:",result);
+
+
+                FileDownload fileDownload=new FileDownload(result, new FileDownload.IFileDownload() {
+                    @Override
+                    public void OnFileDownloadEvent(int r) {
+                        if (r==1)
+                        {
+                            Toast.makeText(Login.this, "下载基本数据错误", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        else
+                            handler.sendEmptyMessage(1);
+                    }
+                });
+                fileDownload.streamDownLoadFile();
+            }
             else
                 handler.sendEmptyMessage(0);
             yyHttpClient.closeRequest();

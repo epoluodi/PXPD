@@ -14,6 +14,8 @@ public final class Config {
 
 
 
+	public static String ClerkID;
+	public static String ClerkStationID;
 
 	public static int Mode=0;//当前用户选择的模式
 	public static String ServerIP="";//服务器地址
