@@ -2,22 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pxpd">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:debuggable="true"
+        android:name=".App.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".App.App"
         android:theme="@style/AppTheme">
         <activity android:name=".Login">
             <intent-filter>
@@ -32,7 +34,8 @@
         <activity android:name=".online_pd" />
         <activity android:name=".OfflineFileActivity" />
         <activity android:name=".FindActivity" />
-        <activity android:name=".UpJiaAvtivity"></activity>
+        <activity android:name=".UpJiaAvtivity" />
+        <activity android:name=".PDBeforeActivity"></activity>
     </application>
 
 </manifest>

@@ -46,7 +46,10 @@ public class FileDownload {
     }
 
 
-    public void streamDownLoadFile() {
+    /**
+     * 下载流文件
+     */
+    public void streamDownLoadFile(String filename) {
 
         Log.i("下载地址", _fileurl);
 
@@ -87,11 +90,11 @@ public class FileDownload {
                 return;
             }
             Log.i("下载文件大小:", String.valueOf(bufferfile.length));
-//			SuyApplication.getApplication().getCacheDir()
-//            File file = new File(SuyApplication.getApplication().getCacheDir(),
-//                    mediaid + imgamub + mediatype);
-            File file = new File(Environment.getExternalStorageDirectory(),
-                    "basedb.db");
+
+            File file = new File(App.getAPP().getFilesDir(),
+                    filename);
+//            File file = new File(Environment.getExternalStorageDirectory(),
+//                    "basedb.db");
             if (file.exists())
                 file.delete();
             FileOutputStream fileOutputStream = new FileOutputStream(file);

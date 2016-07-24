@@ -11,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.pxpd.App.Config;
+
 public class MainActivity extends Activity {
 
     private ImageView btnreturn;
     private RelativeLayout btnsetting,btndataasyanc,btnolpd,btnfind,btnup;
-    private TextView title;
+    private TextView title,netstate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,12 @@ public class MainActivity extends Activity {
         btnfind.setOnClickListener(onClickListenerolfind);
         btnup = (RelativeLayout)findViewById(R.id.btnup);
         btnup.setOnClickListener(onClickListenerolup);
+        netstate = (TextView)findViewById(R.id.netstate);
+        if (Config.Mode==0)
+            netstate.setText("连接状态：内网");
+        if (Config.Mode==1)
+            netstate.setText("连接状态：外网");
+
     }
 
     /**
@@ -69,7 +77,7 @@ public class MainActivity extends Activity {
     View.OnClickListener onClickListenerolpd = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent=new Intent(MainActivity.this,online_pd.class);
+            Intent intent=new Intent(MainActivity.this,PDBeforeActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.alpha,R.anim.alpha_exit);
         }

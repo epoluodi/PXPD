@@ -32,7 +32,7 @@
                     android:layout_margin="2dp"
                     android:text="601"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v1"
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/v1"
                     android:layout_margin="3dp"
-                    android:text="位置"
+                    android:text="位置编号"
                     android:textAlignment="center"
                     android:textSize="14dp"
                     android:textColor="@color/gray"
@@ -67,7 +67,7 @@
                     android:layout_margin="2dp"
                     android:text="A"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v2"
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/v2"
                     android:layout_margin="3dp"
-                    android:text="库房"
+                    android:text="库房编号"
                     android:textAlignment="center"
                     android:textSize="14dp"
                     android:textColor="@color/gray"
@@ -99,9 +99,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:text="6"
+                    android:text="60101A01"
+
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v3"
@@ -135,7 +136,7 @@
                     android:layout_margin="2dp"
                     android:text="B"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v4"
@@ -176,7 +177,7 @@
                     android:layout_margin="2dp"
                     android:text="5000"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v5"
@@ -211,7 +212,7 @@
                     android:layout_margin="2dp"
                     android:text="4321"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v6"
@@ -245,7 +246,7 @@
                     android:layout_margin="2dp"
                     android:text="873"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v7"
@@ -277,9 +278,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:text="90"
+                    android:text="0"
                     android:textAlignment="center"
-                    android:textSize="18dp" />
+                    android:textSize="14dp" />
 
                 <View
                     android:id="@+id/v8"
@@ -316,19 +317,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_saixuan"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:textSize="16dp"
-            android:background="@drawable/btn_select"
-            android:text="筛选"
-            android:textColor="@color/black" />
+
 
         <Button
             android:textSize="16dp"

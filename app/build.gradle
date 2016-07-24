@@ -20,7 +20,8 @@ android {
 }
 
 dependencies {
-//    compile fileTree(dir: 'libs', include: ['*.jar'])
-//    compile files('libs/uhf.jar')
+    //    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //    compile files('libs/uhf.jar')
     compile 'com.android.support:support-v4:18.0.0'
+    compile files('libs/uhf.jar')
 }

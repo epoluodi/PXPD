@@ -12,12 +12,16 @@ public class App extends Application {
 
 
 
+    private static  App APP;
 
-
+    public static App getAPP() {
+        return APP;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        APP=this;
         //读取APP 信息环境，第一次运行创建
         Boolean isrun = Config.getKeyShareVarForBoolean(getApplicationContext(),"IsRun");//判断程序是否运行
         if (!isrun)

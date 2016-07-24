@@ -185,6 +185,7 @@ public class Login extends Activity {
             Log.i("json返回:",result);
 
 
+
             JSONObject jsonObject=new JSONObject(result);
             if (jsonObject.getString("success").equals("true")) {
                 JSONObject data= jsonObject.getJSONObject("data");
@@ -194,8 +195,8 @@ public class Login extends Activity {
                 yyHttpClient.closeRequest();
                 yyHttpClient=new YYHttpClient();
                 yyHttpClient.openRequest(Config.getSrvUrl("GetPositionData"), YYHttpClient.REQ_METHOD_POST);
-                yyHttpClient.setPostValuesForKey("clerkStationID,", Config.ClerkStationID);
-                yyHttpClient.setPostValuesForKey("clerkID)", Config.ClerkID);
+                yyHttpClient.setPostValuesForKey("clerkStationID", Config.ClerkStationID);
+                yyHttpClient.setPostValuesForKey("clerkID", Config.ClerkID);
                 yyHttpClient.setEntity(yyHttpClient.getPostData());
                 r = yyHttpClient.sendRequest();
                 if (!r) {
@@ -213,6 +214,16 @@ public class Login extends Activity {
                 result = new String(buffer, "utf-8");
                 result = Common.getjsonForXML(result);
                 Log.i("json返回:",result);
+                jsonObject=new JSONObject(result);
+                data= jsonObject.getJSONObject("data");
+                if (!jsonObject.getString("success").equals("true"))
+                {
+                    handler.sendEmptyMessage(0);
+                    yyHttpClient.closeRequest();
+                    return;
+                }
+                result  = String.format("http://%1$s:%2$s/%3$s",
+                        Config.ServerIP,Config.ServerPort,data.getString("PositionDataPath"));
 
 
                 FileDownload fileDownload=new FileDownload(result, new FileDownload.IFileDownload() {
@@ -220,14 +231,14 @@ public class Login extends Activity {
                     public void OnFileDownloadEvent(int r) {
                         if (r==1)
                         {
-                            Toast.makeText(Login.this, "下载基本数据错误", Toast.LENGTH_SHORT).show();
+                            handler.sendEmptyMessage(0);
                             return;
                         }
                         else
                             handler.sendEmptyMessage(1);
                     }
                 });
-                fileDownload.streamDownLoadFile();
+                fileDownload.streamDownLoadFile("basedb.db");
             }
             else
                 handler.sendEmptyMessage(0);

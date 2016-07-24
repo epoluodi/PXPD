@@ -45,13 +45,21 @@
         <TextView
             android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
+            android:maxWidth="240dp"
             android:layout_height="wrap_content"
-            android:text="城南库房信息库"
+            android:text="601库房A区601A密集架第6列B面第1组第3格"
             style="@style/TextStyle"
-            android:textSize="16dp"
+            android:lines="1"
+            android:textSize="14dp"
+            android:ellipsize="marquee"
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
+            android:id="@+id/title"
 
             />
     </LinearLayout>
@@ -66,6 +74,7 @@
         android:clickable="true"
         android:layout_centerVertical="true"
         android:id="@+id/btn_scan"
+
         />
 
 

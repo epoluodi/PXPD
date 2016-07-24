@@ -17,7 +17,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:text="连接状态：内网"
-
+        android:id="@+id/netstate"
         android:textColor="@color/gray"
         android:textSize="16dp" />
 
