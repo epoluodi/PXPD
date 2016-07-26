@@ -74,6 +74,7 @@
         android:clickable="true"
         android:layout_centerVertical="true"
         android:id="@+id/btn_scan"
+        android:visibility="invisible"
 
         />
 
