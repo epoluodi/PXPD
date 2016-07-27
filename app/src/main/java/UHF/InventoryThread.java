@@ -1,5 +1,7 @@
 package UHF;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.android.hdhe.uhf.reader.Tools;
@@ -19,13 +21,15 @@ public class InventoryThread extends Thread{
     private boolean runFlag = true;
     private boolean startFlag = false;
     private UhfReader reader;
+    private Handler handler;
 
 
 
 
-    public InventoryThread()
+    public InventoryThread(UhfReader reader,Handler handler)
     {
-        reader =UhfReader.getInstance();
+        this.reader =reader;
+        this.handler=handler;
     }
 
 
@@ -55,7 +59,9 @@ public class InventoryThread extends Thread{
     public void run() {
         super.run();
         while(runFlag){
+            Log.i("uhf扫描循环 ","");
             if(startFlag){
+                Log.i("扫描开始 ","");
                 epcList = reader.inventoryRealTime();
                 if(epcList != null && !epcList.isEmpty()){
 
@@ -63,6 +69,9 @@ public class InventoryThread extends Thread{
                     for(byte[] epc:epcList){
                         String epcStr = Tools.Bytes2HexString(epc, epc.length);
                         Log.i("rfid ",epcStr);
+                        Message message=handler.obtainMessage();
+                        message.obj = epcStr;
+                        handler.sendMessage(message);
                     }
                 }
                 epcList = null ;
@@ -72,6 +81,12 @@ public class InventoryThread extends Thread{
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+            }
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
     }

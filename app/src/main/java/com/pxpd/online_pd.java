@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -149,13 +150,31 @@ public class online_pd extends Activity {
         }
         catch (Exception e)
         {e.printStackTrace();}
-        Util.initSoundPool(this);
-        inventoryThread = new InventoryThread();
+        inventoryThread = new InventoryThread(reader,handler);
         inventoryThread.start();
 
+        Util.initSoundPool(this);
 
 
     }
+
+
+    Handler handler=new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (mapqueue.containsKey(msg.obj.toString())) {
+                int index = mapqueue.get(msg.obj);
+                Map<String,String> map = mapList.get(index);
+                map.remove("state");
+                map.put("state","1");
+                myAdpter.notifyDataSetChanged();
+            }
+
+
+        }
+    };
 
     private Handler mHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
