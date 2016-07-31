@@ -37,6 +37,15 @@
         android:id="@+id/docid"
         android:text="档案编号:E20010267" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:id="@+id/chk"
+        />
+
     <LinearLayout
         android:layout_below="@+id/docid"
         android:layout_marginLeft="10dp"

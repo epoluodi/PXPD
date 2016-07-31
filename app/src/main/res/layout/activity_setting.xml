@@ -44,12 +44,13 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
-            android:gravity="center|center_vertical"
+            android:gravity="right|center_vertical"
             android:text="192.168.1.1"
             android:textColor="@color/white"
             android:inputType="textUri"
             android:textAlignment="viewEnd"
             android:textSize="14dp"
+
            />
 
     </RelativeLayout>
@@ -75,7 +76,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
-            android:gravity="center|center_vertical"
+            android:gravity="right|center_vertical"
             android:text="80"
             android:inputType="number"
             android:textColor="@color/white"
@@ -122,12 +123,13 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
-            android:gravity="center|center_vertical"
+            android:gravity="right|center_vertical"
             android:text="192.168.1.1"
             android:inputType="textUri"
             android:textColor="@color/white"
             android:textAlignment="viewEnd"
             android:textSize="14dp"
+
 
             />
 
@@ -154,7 +156,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="10dp"
-            android:gravity="center|center_vertical"
+            android:gravity="right|center_vertical"
             android:text="80"
             android:inputType="number"
             android:textColor="@color/white"
