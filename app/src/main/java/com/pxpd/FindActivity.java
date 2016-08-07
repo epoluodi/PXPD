@@ -1,6 +1,7 @@
 package com.pxpd;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.Map;
@@ -22,6 +24,7 @@ public class FindActivity extends Activity {
             ColNum, ABSide,GroupNum,CaseNum;
     private ImageView btn_right;
     private int menumode= 1;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class FindActivity extends Activity {
         btn_saixuan.setOnClickListener(onClickListenerbtn_saixuan);
         btn_right = (ImageView)findViewById(R.id.btn_right);
         btn_right.setVisibility(View.VISIBLE);
+        btn_right.setBackground(getResources().getDrawable(R.drawable.btn_find_menu_select));
         btn_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +46,9 @@ public class FindActivity extends Activity {
 
             }
         });
-
+        searchView = (SearchView)findViewById(R.id.search_view);
+        searchView.onActionViewExpanded();
+        searchView.setQueryHint("档案号");
     }
 
 
@@ -55,14 +61,17 @@ public class FindActivity extends Activity {
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
-        switch (featureId)
+        switch (item.getItemId())
         {
             case R.id.archivesNumKeyword:
-
+                menumode=1;
+                searchView.setQueryHint("档案号");
 
 
                 break;
             case R.id.fileTitleKeyword:
+                menumode=2;
+                searchView.setQueryHint("案卷名称");
                 break;
         }
 
@@ -75,9 +84,9 @@ public class FindActivity extends Activity {
     View.OnClickListener onClickListenerbtn_saixuan = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Find_Dialog find_dialog=new Find_Dialog(FindActivity.this);
-            find_dialog.setiDialogReslut(iDialogReslut);
-            find_dialog.show();
+
+            Intent intent=new Intent(FindActivity.this,Find_Query.class);
+            startActivityForResult(intent,0);
         }
     };
 

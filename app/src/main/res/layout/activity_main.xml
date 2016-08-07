@@ -214,6 +214,7 @@
             android:background="@drawable/btn_botton_selector"
             android:layout_width="20dp"
             android:clickable="true"
+            android:id="@+id/controller"
             android:layout_height="wrap_content">
 
             <ImageView

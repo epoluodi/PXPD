@@ -97,7 +97,22 @@ public class DB {
         try {
             ContentValues cv = new ContentValues();
             cv.put("ArchivesState",ArchivesState);
-            db.update("photoinfo",cv,"ArchivesNum= ?",new String[]{ArchivesNum});
+            db.update("ArchivesManage",cv,"ArchivesNum= ?",new String[]{ArchivesNum});
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 剔除记录
+     * @param ArchivesNum
+     */
+    public void deleteArchivesState(String ArchivesNum)
+    {
+        try {
+
+            db.delete("ArchivesManage","ArchivesNum= ?",new String[]{ArchivesNum});
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/background"
+    tools:context=".ControllerActivity">
+    <include layout="@layout/headlayout" />
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="60dp"
+            android:textSize="16dp"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:text="库房"
+            android:id="@+id/t1"
+            android:layout_centerVertical="true"
+            />
+        <Spinner
+            android:layout_toRightOf="@+id/t1"
+            android:id="@+id/sp1"
+            android:layout_marginLeft="10dp"
+            style="@android:style/Widget.Spinner.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_width="60dp"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:text="区"
+            android:id="@+id/t2"
+            android:layout_centerVertical="true"
+            />
+        <Spinner
+            android:layout_toRightOf="@+id/t2"
+            android:id="@+id/sp2"
+            android:layout_marginLeft="10dp"
+            style="@android:style/Widget.Spinner.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_width="60dp"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:text="密集架"
+            android:id="@+id/t3"
+            android:layout_centerVertical="true"
+            />
+        <Spinner
+            android:layout_toRightOf="@+id/t3"
+            android:id="@+id/sp3"
+            android:layout_marginLeft="10dp"
+            style="@android:style/Widget.Spinner.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:textSize="16dp"
+            android:layout_width="60dp"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:text="列"
+            android:id="@+id/t4"
+            android:layout_centerVertical="true"
+            />
+        <Spinner
+            android:layout_toRightOf="@+id/t4"
+            android:id="@+id/sp4"
+            android:layout_marginLeft="10dp"
+            style="@android:style/Widget.Spinner.DropDown"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:textSize="16dp"
+            android:id="@+id/btnstart"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select"
+            android:text="开启"
+            android:textColor="@color/black" />
+
+        <Button
+            android:textSize="16dp"
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select"
+            android:text="关闭"
+            android:textColor="@color/black" />
+        <Button
+            android:textSize="16dp"
+            android:id="@+id/btntf"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select"
+            android:text="通风"
+            android:textColor="@color/black" />
+
+        <Button
+            android:textSize="16dp"
+            android:id="@+id/btnclosetf"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select"
+            android:text="关闭通风"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</LinearLayout>

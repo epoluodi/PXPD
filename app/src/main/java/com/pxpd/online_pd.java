@@ -63,7 +63,8 @@ public class online_pd extends Activity {
     private Map<String, Integer> mapqueue;
     private MyAdpter myAdpter;
     private List<String> listchk;
-    private Button btnxiugai;
+    private List<Integer> listchk2;
+    private Button btnxiugai,btntichu,btnshangjia;
     private String updatearchivesNums="";
 
     private int scancounts = 0;
@@ -89,6 +90,10 @@ public class online_pd extends Activity {
 
         btnxiugai = (Button) findViewById(R.id.btn_xiugai);
         btnxiugai.setOnClickListener(onClickListenerxiugai);
+        btntichu = (Button) findViewById(R.id.btn_tichu);
+        btntichu.setOnClickListener(onClickListenertichu);
+        btnshangjia = (Button) findViewById(R.id.btn_shangjia);
+        btnshangjia.setOnClickListener(onClickListenershangjia);
 
         Bundle bundle = getIntent().getExtras();
         title.setText(bundle.getString("Position"));
@@ -101,6 +106,7 @@ public class online_pd extends Activity {
         jieyue.setText(bundle.getString("Borrow"));
 
         listchk = new ArrayList<String>();
+        listchk2 =new ArrayList<Integer>();
         mapList = new ArrayList<Map<String, String>>();
         mapqueue = new HashMap<String, Integer>();
         list = (ListView) findViewById(R.id.list);
@@ -118,6 +124,10 @@ public class online_pd extends Activity {
     View.OnClickListener onClickListenerxiugai = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            if (listchk.size()==0)
+                return;
+
             String archivesNums = "";
             for (String s : listchk) {
                 archivesNums += s + ",";
@@ -125,12 +135,10 @@ public class online_pd extends Activity {
             archivesNums = archivesNums.substring(0, archivesNums.length() - 1);
             Log.i("选择中的记录", archivesNums);
 
-            if (archivesNums.equals(""))
-                return;
-
             updatearchivesNums = archivesNums;
             AlertDialog.Builder builder = new AlertDialog.Builder(online_pd.this);
             builder.setTitle("修改状态");
+
             String m = String.format("选择了%1$s条记录，提交后系统自动更改为“在库”状态", listchk.size());
             builder.setMessage(m);
             builder.setPositiveButton("修改", new DialogInterface.OnClickListener() {
@@ -150,10 +158,88 @@ public class online_pd extends Activity {
             });
             builder.setNegativeButton("取消",null);
             AlertDialog alertDialog = builder.create();
+            alertDialog.setCanceledOnTouchOutside(false);
             alertDialog.show();
 
         }
     };
+
+    /**
+     * 剔除状态
+     */
+    View.OnClickListener onClickListenertichu = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            if (listchk.size()==0)
+                return;
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(online_pd.this);
+            builder.setTitle("剔除");
+            String m = String.format("选择了%1$s条记录，确定剔除选中的记录吗", listchk.size());
+            builder.setMessage(m);
+            builder.setPositiveButton("剔除", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //提交
+                    dialogInterface.dismiss();
+
+                    for (String s : listchk) {
+                        db.deleteArchivesState(s);
+                    }
+                    refreshData();
+                }
+            });
+            builder.setNegativeButton("取消",null);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.show();
+
+        }
+    };
+
+    /**
+     * 上架
+     */
+    View.OnClickListener onClickListenershangjia = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            if (listchk.size()==0)
+                return;
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(online_pd.this);
+            builder.setTitle("档案上架");
+
+            String m = String.format("选择了%1$s条记录，提交上架.", listchk.size());
+            builder.setMessage(m);
+            builder.setPositiveButton("上架", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //提交
+                    dialogInterface.dismiss();
+                    CustomPopWindowPlugin.ShowPopWindow(btnxiugai,getLayoutInflater()
+                            ,"正在提交");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (String s : listchk) {
+
+                            }
+
+                        }
+                    }).start();
+                }
+            });
+            builder.setNegativeButton("取消",null);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.show();
+
+        }
+    };
+
+
 
     private void refreshData() {
         Cursor cursor = db.getArchives();
@@ -162,6 +248,10 @@ public class online_pd extends Activity {
             return;
         }
         int i = 0;
+        listchk.clear();
+        listchk2.clear();
+        mapList.clear();
+        mapqueue.clear();
         while (cursor.moveToNext()) {
             Map<String, String> map = new HashMap<String, String>();
             Log.i("RFIDLabelID", cursor.getString(1));
@@ -182,6 +272,7 @@ public class online_pd extends Activity {
             map.put("ColNum", cursor.getString(14));
             map.put("ABSide", cursor.getString(15));
             map.put("GroupNum", cursor.getString(16));
+            map.put("CaseNum", cursor.getString(17));
             map.put("ArchivesState", cursor.getString(18));
             map.put("Remark", cursor.getString(19));
             map.put("state", "0");
@@ -224,11 +315,13 @@ public class online_pd extends Activity {
             if (mapqueue.containsKey(msg.obj.toString())) {
                 int index = mapqueue.get(msg.obj);
                 Map<String, String> map = mapList.get(index);
-                map.remove("state");
-                map.put("state", "1");
-                scancounts++;
-                myAdpter.notifyDataSetChanged();
-                scaned.setText(String.valueOf(scancounts));
+                if (!map.get("state").equals("1")) {
+                    map.remove("state");
+                    map.put("state", "1");
+                    scancounts++;
+                    myAdpter.notifyDataSetChanged();
+                    scaned.setText(String.valueOf(scancounts));
+                }
             }
         }
     };
@@ -278,11 +371,13 @@ public class online_pd extends Activity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
+                        finish();
 
                     }
                 });
                 builder.setNegativeButton("取消",null);
                 AlertDialog alertDialog = builder.create();
+                alertDialog.setCanceledOnTouchOutside(false);
                 alertDialog.show();
             }
         }
@@ -311,9 +406,9 @@ public class online_pd extends Activity {
     {
         try {
             YYHttpClient yyHttpClient = new YYHttpClient();
-            yyHttpClient.openRequest(Config.getSrvUrl("EditArchivesState"), YYHttpClient.REQ_METHOD_POST);
+            yyHttpClient.openRequest(Config.getSrvUrl("EditArchivesStateByOneState"), YYHttpClient.REQ_METHOD_POST);
             yyHttpClient.setPostValuesForKey("archivesNums", updatearchivesNums);
-            yyHttpClient.setPostValuesForKey("archivesNums", "1");
+            yyHttpClient.setPostValuesForKey("archivesState", "1");
             yyHttpClient.setEntity(yyHttpClient.getPostData());
             Boolean r = yyHttpClient.sendRequest();
             if (!r) {
@@ -340,6 +435,7 @@ public class online_pd extends Activity {
                     db.updateArchivesState(s,"1");
                 }
                 listchk.clear();
+                listchk2.clear();
                 httphandler.sendEmptyMessage(1);
             }
             else
@@ -353,6 +449,76 @@ public class online_pd extends Activity {
         }
 
     }
+
+
+    /**
+     * 档案上架
+     */
+    private void fileShelvesTask(Map<String,String> map)
+    {
+        try {
+            YYHttpClient yyHttpClient = new YYHttpClient();
+            yyHttpClient.openRequest(Config.getSrvUrl("FileShelves"), YYHttpClient.REQ_METHOD_POST);
+            yyHttpClient.setPostValuesForKey("archivesNum", map.get("ArchivesNum"));
+            yyHttpClient.setPostValuesForKey("rFIDLabelID", map.get("RFIDLabelID"));
+            yyHttpClient.setPostValuesForKey("twoDCLabelID", map.get("TwoDCLabelID"));
+            yyHttpClient.setPostValuesForKey("fileTitle", map.get("FileTitle"));
+            yyHttpClient.setPostValuesForKey("storeroomID", map.get("StoreroomID"));
+            yyHttpClient.setPostValuesForKey("sAreaID", map.get("SAreaID"));
+            yyHttpClient.setPostValuesForKey("compactShelfID", map.get("CompactShelfID"));
+            yyHttpClient.setPostValuesForKey("colNum", map.get("ColNum"));
+            yyHttpClient.setPostValuesForKey("aBSide", map.get("ABSide"));
+            yyHttpClient.setPostValuesForKey("groupNum", map.get("GroupNum"));
+            yyHttpClient.setPostValuesForKey("caseNum", map.get("CaseNum"));
+            yyHttpClient.setPostValuesForKey("moreInfor", "");
+
+            yyHttpClient.setEntity(yyHttpClient.getPostData());
+            Boolean r = yyHttpClient.sendRequest();
+            if (!r) {
+                httphandler.sendEmptyMessage(0);
+                yyHttpClient.closeRequest();
+                return;
+            }
+            byte[] buffer = yyHttpClient.getRespBodyData();
+            if (buffer == null) {
+                httphandler.sendEmptyMessage(0);
+                yyHttpClient.closeRequest();
+                return;
+            }
+
+            String result = new String(buffer, "utf-8");
+            result = Common.getjsonForXML(result);
+            Log.d("json返回:",result);
+            JSONObject jsonObject=new JSONObject(result);
+            yyHttpClient.closeRequest();
+            if (jsonObject.getString("success").equals("true")) {
+
+                for (String s:listchk)
+                {
+                    db.updateArchivesState(s,"1");
+                }
+                listchk.clear();
+                listchk2.clear();
+                httphandler.sendEmptyMessage(1);
+
+            }
+            else {
+
+                throw  new Exception("");
+            }
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            httphandler.sendEmptyMessage(-1);
+        }
+
+
+    }
+
+
+
 
     Handler httphandler=new Handler()
     {
@@ -371,6 +537,9 @@ public class online_pd extends Activity {
                     break;
                 case -1:
                     Toast.makeText(online_pd.this,"修改状态失败，请重新尝试",Toast.LENGTH_SHORT).show();
+                    break;
+                case -2:
+                    Toast.makeText(online_pd.this,msg.obj.toString(),Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -461,13 +630,18 @@ public class online_pd extends Activity {
                 int i = (Integer) compoundButton.getTag();
                 Map<String, String> map = mapList.get(i);
                 if (b) {
+
                     if (listchk.contains(map.get("ArchivesNum")))
                         return;
-                    else
+                    else {
                         listchk.add(map.get("ArchivesNum"));
+                        listchk2.add(i);
+                    }
 
-                } else
+                } else {
                     listchk.remove(map.get("ArchivesNum"));
+                    listchk2.remove(i);
+                }
             }
         };
     }

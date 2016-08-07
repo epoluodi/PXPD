@@ -16,7 +16,8 @@ import com.pxpd.App.Config;
 public class MainActivity extends Activity {
 
     private ImageView btnreturn;
-    private RelativeLayout btnsetting,btndataasyanc,btnolpd,btnfind,btnup;
+    private RelativeLayout btnsetting,btndataasyanc,btnolpd,btnfind,btnup
+            ,btncontroller;
     private TextView title,netstate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,11 @@ public class MainActivity extends Activity {
         btnfind.setOnClickListener(onClickListenerolfind);
         btnup = (RelativeLayout)findViewById(R.id.btnup);
         btnup.setOnClickListener(onClickListenerolup);
+
+        btncontroller = (RelativeLayout)findViewById(R.id.controller);
+        btncontroller.setOnClickListener(onClickListenercontroller);
+
+
         netstate = (TextView)findViewById(R.id.netstate);
         if (Config.Mode==0)
             netstate.setText("连接状态：内网");
@@ -51,6 +57,18 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View view) {
             Intent intent=new Intent(MainActivity.this,UpJiaAvtivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.alpha,R.anim.alpha_exit);
+        }
+    };
+
+    /**
+     * 密集架控制
+     */
+    View.OnClickListener onClickListenercontroller = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent=new Intent(MainActivity.this,ControllerActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.alpha,R.anim.alpha_exit);
         }

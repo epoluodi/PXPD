@@ -21,6 +21,7 @@
            android:inputType="textCapWords"
            android:imeOptions="actionSearch"
            android:queryHint="关键字"
+
            />
 
 
