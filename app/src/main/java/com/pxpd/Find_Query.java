@@ -19,17 +19,14 @@ public class Find_Query extends Activity {
     private String StoreroomID="",
             SAreaID="",
             CompactShelfID="",
-            ColNum="",
-            ABSide="",
-            GroupNum="",
-            CaseNum="";
-    private String _StoreroomID="",
-            _SAreaID="0",
-            _CompactShelfID="0",
-            _ColNum="0",
-            _ABSide="0",
-            _GroupNum="0",
-            _CaseNum="0";
+            ColNum="";
+
+    private int _StoreroomID=0;
+
+    private String        _SAreaID="",
+            _CompactShelfID="",
+            _ColNum="";
+
     private MyAdpter myAdpter;
     private ImageView btn_right;
 
@@ -61,7 +58,13 @@ public class Find_Query extends Activity {
     View.OnClickListener onClickListenerright = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            Intent intent=new Intent();
+            intent.putExtra("_StoreroomID",_StoreroomID);
+            intent.putExtra("_SAreaID",_SAreaID);
+            intent.putExtra("_CompactShelfID",_CompactShelfID);
+            intent.putExtra("_ColNum",_ColNum);
+            setResult(1,intent);
+            finish();
         }
     };
 
@@ -74,7 +77,7 @@ public class Find_Query extends Activity {
             case 0:
                 if (resultCode ==1)
                 {
-                    _StoreroomID = data.getStringExtra("StoreroomID");
+                    _StoreroomID = data.getIntExtra("StoreroomID",0);
                     StoreroomID = data.getStringExtra("name");
                     myAdpter.notifyDataSetChanged();
                 }
@@ -84,6 +87,22 @@ public class Find_Query extends Activity {
                 {
                     _SAreaID = data.getStringExtra("SAreaID");
                     SAreaID = data.getStringExtra("name");
+                    myAdpter.notifyDataSetChanged();
+                }
+                break;
+            case 2:
+                if (resultCode ==1)
+                {
+                    _CompactShelfID = data.getStringExtra("CompactShelfID");
+                    CompactShelfID = data.getStringExtra("name");
+                    myAdpter.notifyDataSetChanged();
+                }
+                break;
+            case 3:
+                if (resultCode ==1)
+                {
+                    _ColNum = data.getStringExtra("ColNum");
+                    ColNum = data.getStringExtra("name");
                     myAdpter.notifyDataSetChanged();
                 }
                 break;
@@ -98,7 +117,7 @@ public class Find_Query extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             Intent intent=new Intent(Find_Query.this,Find_list2_Activity.class);
             intent.putExtra("mode",i);
-            if (_StoreroomID.equals("") && i !=0)
+            if (_StoreroomID == 0&& i !=0)
             {
                 Toast.makeText(Find_Query.this,"请必须选择一个库房",Toast.LENGTH_SHORT).show();
                 return;
@@ -108,7 +127,16 @@ public class Find_Query extends Activity {
             {
                 intent.putExtra("_StoreroomID",_StoreroomID);
             }
+            else if (i==2)
+            {
+                intent.putExtra("_StoreroomID",_StoreroomID);
+                intent.putExtra("_SAreaID",_SAreaID);
 
+            }
+            else if (i==3)
+            {
+                intent.putExtra("_CompactShelfID",_CompactShelfID);
+            }
             startActivityForResult(intent,i);
         }
     };
@@ -131,7 +159,7 @@ public class Find_Query extends Activity {
         TextView content;
         @Override
         public int getCount() {
-            return 7;
+            return 4;
         }
 
         @Override
@@ -168,18 +196,7 @@ public class Find_Query extends Activity {
                     title.setText("列");
                     content.setText(ColNum);
                     break;
-                case 4:
-                    title.setText("A面/B面");
-                    content.setText(ABSide);
-                    break;
-                case 5:
-                    title.setText("组");
-                    content.setText(GroupNum);
-                    break;
-                case 6:
-                    title.setText("格");
-                    content.setText(CaseNum);
-                    break;
+
             }
 
             return view;

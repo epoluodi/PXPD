@@ -60,9 +60,11 @@ public class online_pd extends Activity {
     private Boolean isstartrfid = false;
     private InventoryThread inventoryThread;
     private List<Map<String, String>> mapList;
+    private List<Map<String, String>> newmapList;
     private Map<String, Integer> mapqueue;
     private MyAdpter myAdpter;
     private List<String> listchk;
+
     private List<Integer> listchk2;
     private Button btnxiugai,btntichu,btnshangjia;
     private String updatearchivesNums="";
@@ -105,6 +107,7 @@ public class online_pd extends Activity {
         zaiku.setText(bundle.getString("OnShelf"));
         jieyue.setText(bundle.getString("Borrow"));
 
+        newmapList = new ArrayList<Map<String, String>>();
         listchk = new ArrayList<String>();
         listchk2 =new ArrayList<Integer>();
         mapList = new ArrayList<Map<String, String>>();
@@ -322,6 +325,23 @@ public class online_pd extends Activity {
                     myAdpter.notifyDataSetChanged();
                     scaned.setText(String.valueOf(scancounts));
                 }
+            }
+            else
+            {
+                isstartrfid = false;
+                inventoryThread.PauseScan();
+                AlertDialog.Builder builder=new AlertDialog.Builder(online_pd.this);
+                builder.setTitle("发现档案");
+                builder.setMessage("发现一个新档案，是否需要添加到记录本中，如果添加，请重新扫描对准档案进行扫描");
+                builder.setPositiveButton("扫描", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //扫描读取档案
+                    }
+                });
+                builder.setNegativeButton("取消",null);
+                AlertDialog alertDialog=builder.create();
+                alertDialog.show();
             }
         }
     };
@@ -609,7 +629,7 @@ public class online_pd extends Activity {
                 state.setText("状态：注销");
 
             if (map.get("state").equals("0")) {
-                pdstate.setText("盘点状态：为扫描");
+                pdstate.setText("盘点状态：未扫描");
                 pdstate.setTextColor(getResources().getColor(R.color.red1));
             } else {
                 pdstate.setText("盘点状态：已扫描");

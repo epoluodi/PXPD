@@ -54,6 +54,7 @@ public class DB {
 
     /**
      * 获取档案数据信息
+     *
      * @return
      */
     public Cursor getArchives() {
@@ -69,6 +70,7 @@ public class DB {
 
     /**
      * 获得档案号状态
+     *
      * @param ArchivesNum
      * @return
      */
@@ -89,15 +91,15 @@ public class DB {
 
     /**
      * 更新档案状态
+     *
      * @param ArchivesNum
      * @param ArchivesState
      */
-    public void updateArchivesState(String ArchivesNum,String ArchivesState)
-    {
+    public void updateArchivesState(String ArchivesNum, String ArchivesState) {
         try {
             ContentValues cv = new ContentValues();
-            cv.put("ArchivesState",ArchivesState);
-            db.update("ArchivesManage",cv,"ArchivesNum= ?",new String[]{ArchivesNum});
+            cv.put("ArchivesState", ArchivesState);
+            db.update("ArchivesManage", cv, "ArchivesNum= ?", new String[]{ArchivesNum});
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -106,13 +108,13 @@ public class DB {
 
     /**
      * 剔除记录
+     *
      * @param ArchivesNum
      */
-    public void deleteArchivesState(String ArchivesNum)
-    {
+    public void deleteArchivesState(String ArchivesNum) {
         try {
 
-            db.delete("ArchivesManage","ArchivesNum= ?",new String[]{ArchivesNum});
+            db.delete("ArchivesManage", "ArchivesNum= ?", new String[]{ArchivesNum});
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -121,182 +123,213 @@ public class DB {
 
     /**
      * 获取库房表
+     *
      * @return
      */
-    public Cursor getStoreroomManager()
-    {
+    public Cursor getStoreroomManager() {
         try {
             Cursor cursor = db.rawQuery("select * from StoreroomManager", null);
             return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-        return null;}
 
     }
-    public String getStoreroomManagerid(String name)
-    {
+
+    public String getStoreroomManagerid(String name) {
         try {
             Cursor cursor = db.rawQuery("select StoreroomID from StoreroomManager " +
-                    "where StoreroomName = ?",
+                            "where StoreroomName = ?",
                     new String[]{name});
             cursor.moveToNext();
             String s = cursor.getString(0);
             cursor.close();
             return s;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
 
     }
-
 
 
     /**
      * 获取区数据
+     *
      * @return
      */
-    public Cursor getAreaManager(String StoreroomID)
-    {
+    public Cursor getAreaManager(String StoreroomID) {
         try {
             Cursor cursor = db.rawQuery("select * from AreaManager where StoreroomID= ?",
                     new String[]{StoreroomID});
             return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
 
     }
 
-    public String getAreaManagerid(String StoreroomID,String name)
-    {
+    public String getAreaManagerid(String StoreroomID, String id) {
         try {
             Cursor cursor = db.rawQuery("select SAreaID from AreaManager where StoreroomID= ? and " +
-                    "SAreaName = ?",
-                    new String[]{StoreroomID,name});
-            cursor.moveToNext();
-            String s =cursor.getString(0);
-            cursor.close();
-            return s;
-        }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
-
-    }
-
-
-
-    /**
-     * 获取密集架数据
-     * @return
-     */
-    public Cursor getCompactShelfManage(String StoreroomID,String SAreaID)
-    {
-        try {
-            Cursor cursor = db.rawQuery("select * from CompactShelfManage where " +
-                    "StoreroomID = ? and SAreaID = ?", new String[]{StoreroomID,SAreaID});
-            return cursor;
-        }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
-
-    }
-
-    public String getCompactShelfManageid(String StoreroomID,String SAreaID,String CompactShelfName)
-    {
-        try {
-            Cursor cursor = db.rawQuery("select CompactShelfID from CompactShelfManage where " +
-                    "StoreroomID = ? and SAreaID = ? and CompactShelfName = ?",
-                    new String[]{StoreroomID,SAreaID,CompactShelfName});
+                            "SAreaID = ?",
+                    new String[]{StoreroomID, String.valueOf(id)});
             cursor.moveToNext();
             String s = cursor.getString(0);
             cursor.close();
             return s;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
 
     }
 
 
+    /**
+     * 获取密集架数据
+     *
+     * @return
+     */
+    public Cursor getCompactShelfManage(String StoreroomID, String SAreaID) {
+        try {
+            Cursor cursor = db.rawQuery("select * from CompactShelfManage where " +
+                    "StoreroomID = ? and SAreaID = ?", new String[]{StoreroomID, SAreaID});
+            return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public String getCompactShelfManageid(String StoreroomID, String SAreaID, String CompactShelfName) {
+        try {
+            Cursor cursor = db.rawQuery("select CompactShelfID from CompactShelfManage where " +
+                            "StoreroomID = ? and SAreaID = ? and CompactShelfName = ?",
+                    new String[]{StoreroomID, SAreaID, CompactShelfName});
+            cursor.moveToNext();
+            String s = cursor.getString(0);
+            cursor.close();
+            return s;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 
     /**
      * 获取密集架列数据
+     *
      * @return
      */
-    public Cursor getCompactShelfCol(String CompactShelfID)
-    {
+    public Cursor getCompactShelfCol(String CompactShelfID) {
         try {
-            Cursor cursor = db.rawQuery("select ColNum from CompactShelfCol where" +
+            Cursor cursor = db.rawQuery("select * from CompactShelfCol where" +
                     " CompactShelfID = ?", new String[]{CompactShelfID});
             return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
 
     }
 
     /**
      * 获取AB面列数据
+     *
      * @return
      */
-    public Cursor getColABSideManage(String CompactShelfID,String ColNum)
-    {
+    public Cursor getColABSideManage(String CompactShelfID, String ColNum) {
         try {
             Cursor cursor = db.rawQuery("select ABSide from ColABSideManage where " +
-                    "CompactShelfID = ? and ColNum = ?",
+                            "CompactShelfID = ? and ColNum = ?",
                     new String[]{CompactShelfID, ColNum});
             return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
 
     }
 
 
-
-
     /**
      * 获取组列数据
+     *
      * @return
      */
-    public Cursor getColGroupManage(String CompactShelfID,String ColNum, String ABSide)
-    {
+    public Cursor getColGroupManage(String CompactShelfID, String ColNum, String ABSide) {
         try {
             Cursor cursor = db.rawQuery("select GroupNum from ColGroupManage where " +
-                    " CompactShelfID = ? and ColNum = ? and ABSide = ?",
-                    new String[]{CompactShelfID,ColNum,ABSide});
+                            " CompactShelfID = ? and ColNum = ? and ABSide = ?",
+                    new String[]{CompactShelfID, ColNum, ABSide});
             return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
 
     }
 
     /**
      * 获取格数据
+     *
      * @return
      */
-    public Cursor getColCaseManage(String CompactShelfID,String ColNum,String ABSide
-    ,String GroupNum)
-    {
+    public Cursor getColCaseManage(String CompactShelfID, String ColNum, String ABSide
+            , String GroupNum) {
         try {
             Cursor cursor = db.rawQuery("select CaseNum from ColCaseManage where " +
                     "CompactShelfID = ? and ColNum = ? and ABSide = ? and " +
-                    "GroupNum = ? ", new String[]{CompactShelfID,ColNum,ABSide,GroupNum});
+                    "GroupNum = ? ", new String[]{CompactShelfID, ColNum, ABSide, GroupNum});
             return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        catch (Exception e)
-        {e.printStackTrace();
-            return null;}
 
     }
+
+
+    public String getCompactShelfName(String CompactShelfId)
+    {
+        try {
+            Cursor cursor = db.rawQuery("select CompactShelfName from CompactShelfCol where " +
+                    "CompactShelfID = ? ", new String[]{CompactShelfId});
+            if (cursor.getCount()==0)
+            {
+                cursor.close();
+                return "";
+            }
+            cursor.moveToNext();
+            String r = cursor.getString(0);
+            cursor.close();
+            return r;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * 读取定向查找
+     * @return
+     */
+    public Cursor getArchivesMange() {
+        try {
+            Cursor cursor = db.rawQuery("select * from ArchivesManage", null);
+            return cursor;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+
 }
